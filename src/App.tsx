@@ -81,14 +81,16 @@ function App() {
             </div>
             {/* 컨테이너 레이아웃 */}
             <div id="container">
+              {/*//^ 함수형 컴포넌트에 매개변수를 전달할 땐 */}
+              {/* //^ html 태그에서 속성 값을 지정하는 방식과 동일하게 사용 */}
                 {/* 아이디 레이아웃 */}
-                <InputGroup/>
+                <InputGroup label='아이디' type = 'text'/>
                 {/* 비밀번호 레이아웃 */}
-                <InputGroup/>
+                <InputGroup label='비밀번호' type = 'password'/>
                 {/* 비밀번호 확인 레이아웃 */}
-                <InputGroup/>
+                <InputGroup label='비밀번호 확인' type = 'password'/>
                { /* 이름 레이아웃 */}
-               <InputGroup/>
+               <InputGroup label='이름' type = 'text'/>
                 {/* 생년월일 레이아웃 */}
                 <div className="content">
                     <div className="input-label">생년월일</div>
