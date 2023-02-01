@@ -1,6 +1,8 @@
 // ? 파일명이 index.확장자 일 경우 
 // ? 해당 파일이 속해 있는 폴더명으로 import 가능 
 import InputGroup from 'src/components';
+import BirthInputGroup from './components/BirthInputGroup';
+import ButtonGroup from './components/ButtonGroup';
 import './style.css'
 
 // 한줄 주석
@@ -92,42 +94,9 @@ function App() {
                { /* 이름 레이아웃 */}
                <InputGroup label='이름' type = 'text'/>
                 {/* 생년월일 레이아웃 */}
-                <div className="content">
-                    <div className="input-label">생년월일</div>
-                    <div className="flex">
-                        {/* style의 display 요소를 inline으로 적용해서 inline 형식으로 변경 */}
-                        <div className="flex-1">
-                            <input className="input-middle-style" type="number" placeholder="년 (4자리)" />
-                        </div>
-                        <div className="flex-1">
-                            {/* select */}
-                            <select className="input-middle-style">
-                                <option>월</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                                <option>11</option>
-                                <option>12</option>
-                            </select>
-                        </div>
-                        <div className="flex-1">
-                            <input className="input-middle-style" type="number" placeholder="일" />
-                        </div>
-                    </div>
-                </div>
+                <BirthInputGroup />
                 {/* 버튼 레이아웃 */}
-                <div className="content">
-                    <div className="inline">
-                        <button className="join-button">가입하기</button>
-                    </div>
-                </div>
+                <ButtonGroup/>
             </div>
         </div>
     </div>
@@ -137,9 +106,15 @@ function App() {
 
 
 // ^ (2)
-// const App = () =>{
-//   return(
-//     <div></div>
-//   );
-// }
+// ! {중괄호로 묶여있으면 typescript 사용 }
+const Description = () =>{
+  // ^ {}및 공간은 typescript를 인식 
+
+  // ^ return의 ()에는 html 태그를 인식
+  // ^ return ()안에서 typescript를 사용 하려면 {}로 해당 구문을 감싸야 한다 
+  // ^ {}안에서 html 태그를 사용하려면 return ()의 괄호 안에 작성  
+  return(
+    <div></div>
+  );
+}
 export default App;

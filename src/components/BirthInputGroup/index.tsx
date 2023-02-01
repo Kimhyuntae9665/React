@@ -28,24 +28,17 @@ function MonthSelectGroup() {
     const months : number[] = [];
     for(let i=1;i<=12;i++)
         months.push(i); 
-
+    // [1,2,3,4,5,6,7,8,9,10,11,12]
     return (
         <div className="flex-1">
             {/* select */}
+            {/* //!소괄호() html 문법을 담는다  */}
             <select className="input-middle-style">
                 <option>월</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
-                <option>9</option>
-                <option>10</option>
-                <option>11</option>
-                <option>12</option>
+                {months.map((month)=>(
+                    <option>{month}</option>
+                ))}
+                
             </select>
         </div>
 
@@ -63,24 +56,7 @@ export default function BirthInputGroup() {
             <div className="flex">
                 {/* style의 display 요소를 inline으로 적용해서 inline 형식으로 변경 */}
                 <DateInputGroup placeholder='년 (4자리)' />
-                <div className="flex-1">
-                    {/* select */}
-                    <select className="input-middle-style">
-                        <option>월</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                        <option>9</option>
-                        <option>10</option>
-                        <option>11</option>
-                        <option>12</option>
-                    </select>
-                </div>
+                <MonthSelectGroup/> 
                 <DateInputGroup placeholder='일' />
             </div>
         </div>
