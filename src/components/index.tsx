@@ -2,7 +2,10 @@
 // ? ES7 + React/ Redux / React-native Snippets 확장 설치
 // ? .tsx 파일 내부에서 'rfc'로 함수형 컴포넌트를 자동 생성 
 
-import React from 'react'
+import React, { useState } from 'react'
+
+// ! export default 값은 1개만 가능 
+import NAEE,{NAME,PHONE} from 'src/constants';
 
 // # 함수형 컴포넌트에서 매개변수 받는 방법 
 // ? 하나의 인터페이스를 선언하고 해당 인터페이스의 객체로 받음 
@@ -20,12 +23,37 @@ export default function InputGroup(props:Props) {
     // ? 객체를 필드 단위로 파괴(분해)해서 사용 가능 
     const{ label,type } = props;
 
+    // # State : 컴포넌트가 리렌더링 되는 기준 
+    // ? 화면에서 사용되는 변수 
+    
+    // let number =0;
+    // ? State를 선언하는 방법 
+    // 
+    // ? const [상태명(변수명), 상태변경메서드(set메서드)] = useState<타입>(초깃값);
+    // ! string ,number,boolean 이 typescript의 기본 타입 
+    const[number,setNumber] = useState<number>(0);
+    const[inputValue,setInputValue] = useState<string>('');
+
     return (
         <div className="content">
             <div className="input-label">{label}</div>
             <div className="inline">
-                <input className="input-style" type={type} />
+                {
+                    //# 입력을 받았을 떄에 대한 이벤트 처리 
+                    // ? input의 값이 바뀌었을때의 동작을 지정하고자 할때는 
+                    // ? html의 onchange속성을 사용  
+                    // ? onChange={함수}
+                }
+                {/* {inputValue} */}
+                <input className="input-style" type={type} onChange={(event)=>setInputValue(event.target.value)}/>
             </div>
+            
+            {/* //# 클릭에 대한 이벤트 처리 */}
+            {/*//? 클릭했을 때의 동작을 지정하고자 할떄는  */}
+            {/* html의 onclick 속성을 사용 */}
+            {/* onclick ={함수} */}
+
+            {/* <button onClick={()=>setNumber(number+1)}>+</button> */}
         </div>
     )
 }
