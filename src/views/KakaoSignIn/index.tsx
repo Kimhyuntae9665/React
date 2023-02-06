@@ -1,9 +1,18 @@
-import React from 'react';
+import React ,{useState} from 'react';
 import './style.css';
+import {Alert} from '@mui/material';
+
+
+
 
 // ! 첫 문자 대문자로 적어야지 component로 인식 
 // ! 1. div로 공간부터 크게 나누기 
 export default function KakaoSignIn() {
+
+    // state 선언 
+    const [email,setEmail] = useState<string>("");
+
+
     return (
         <div className='kakao-container'>
             {/*로그인 폼 레이아웃 */}
@@ -19,8 +28,16 @@ export default function KakaoSignIn() {
                     <div className='kakao-input-layout'></div>
                     {/*아이디 인풋 */}
                     <div className="kakao-input-box">
-                        <input className="kakao-input" type = "text" placeholder='카카오메일 아이디, 이메일, 전화번호'/>
+                        <input className="kakao-input" type = "text" placeholder='카카오메일 아이디, 이메일, 전화번호'
+                        onChange = {(event) => setEmail(event.target.value)}/>
+                        
                     </div>
+                    {/* script 사용할려면 {}사용  */}
+                    { email !== "" && (
+                    <Alert severity="info">카카오 메일이 잇다면 메일 아이디만 입력해 보세요</Alert>
+                    )}
+
+
                     {/*비밀번호 인풋  */}
                     <div className="kakao-input-box">
                         <input className="kakao-input" type = "password" placeholder='비밀번호'/>

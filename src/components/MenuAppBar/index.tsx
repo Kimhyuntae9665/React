@@ -1,4 +1,4 @@
-import {useState,MouseEvent} from 'react';
+import {useState,MouseEvent, Dispatch, SetStateAction} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,12 +13,17 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = [{title: 'Naver',viewValue: 'naverSignIn'},{title: 'Kakao',viewValue:'KakaoSIgnIn'}];
+const pages = [{title: 'Naver',viewValue: 'naverSignIn'},{title: 'Kakao',viewValue:'kakaoSignIn'}];
 // ! typescript에서는 함수를 매개변수로 쓸 수 있다 
 
-function MenuAppBar() {
+interface Props{
+  setView: Dispatch<SetStateAction<string>>;
+}
+
+function MenuAppBar({setView}:Props) {
   // ! view state//
-  const [view, setView] = useState<string>('');
+  //! 파일마다 함수들은 이름이 가더라도 다른 함수로 구별해야 한다 
+ 
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
  
@@ -123,7 +128,7 @@ function MenuAppBar() {
             {pages.map((page) => (
               <Button
                 key={page.title}
-                onClick={()=>setView(page.title)}
+                onClick={()=>setView(page.viewValue)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page.title}

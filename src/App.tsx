@@ -12,9 +12,8 @@ export default function App() {
   return (
     <div>
       {/* 화살표 함수 ()=>{} */}
-      <MenuAppBar />
-      <button onClick={()=>setView('naverSignIn')}>네이버 회원가입 화면</button>
-      <button onClick={()=>setView('kakaoSignIn')}>카카오 로그인 화면</button>
+      <MenuAppBar setView={setView}/>
+      
       <div>
         {/* {view==='naverSignIn' && (<NaverSignIn />)}
         {view==='kakaoSignIn' && (<KakaoSignIn />)} */}
@@ -23,6 +22,9 @@ export default function App() {
                 해당하는 경우의 값을 반환 
                 조건 ? 참일 떄의 결과값 : 거짓일 때의 결과값  */}
                 {/* if(조건) {}else{} 와 삼항 연산자가 정확하게  일치 */} 
+                
+                {/* onclick 했을 때 view에 변수 들어가게 하는 함수나 기능은 어디에 있지? */}
+                {view}
         {
           view ==='naverSignIn' ? (<NaverSignIn />) : 
           view ==='kakaoSignIn' ? (<KakaoSignIn />) : (<></>)
@@ -30,6 +32,7 @@ export default function App() {
           // ^ 첫 화면은 빈 화면이고 클릭하면 네이버나 카카오 화면이 뜬다 
           // 첫 화면은 클릭을 안했기에 view 가 빈칸 이므로 삼항 연산자가 거짓이므로 카카오 화면이 뜬다 
         }
+        
         
       </div>
     </div>
