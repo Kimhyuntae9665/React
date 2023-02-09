@@ -12,8 +12,9 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { PAGES } from 'src/constants';
 
-const pages = [{title: 'Naver',viewValue: 'naverSignIn'},{title: 'Kakao',viewValue:'kakaoSignIn'}];
+
 // ! typescript에서는 함수를 매개변수로 쓸 수 있다 
 
 interface Props{
@@ -97,7 +98,7 @@ function MenuAppBar({setView}:Props) {
               // ! 2차원 배열보다는 2번째 방법인 객체배열로 하는것이 더 직관적이고 다양한 타입이 올 수 있어서 장점이 더 많아 
               */}
 
-              {pages.map((page) => (
+              {PAGES.map((page) => (
                 // ! key 뒤에는 구분자로 구분 할 수 있는 인자를 써서 
                 <MenuItem key={page.title} onClick={()=>setView(page.viewValue)}>
                   <Typography textAlign="center">{page.title}</Typography>
@@ -125,7 +126,7 @@ function MenuAppBar({setView}:Props) {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {PAGES.map((page) => (
               <Button
                 key={page.title}
                 onClick={()=>setView(page.viewValue)}

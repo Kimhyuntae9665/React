@@ -21,3 +21,24 @@ export const PHONE = '1111111';
  export default AGE;
 //  export default BIRTH;
  
+
+export const PAGES =[
+    {
+        title:'Naver',
+        viewValue : 'naverSignIn',
+
+    },
+    {
+        title:'Kakao',
+        viewValue:'kakaoSignIn',
+    },
+    {
+        title:'ES6+Typescript',
+        viewValue:'es6TypeScript'
+    },
+    {
+        title:'JSX+TSX',
+        viewValue:'jsxTsx'
+    }
+
+]
