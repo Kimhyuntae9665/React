@@ -29,7 +29,7 @@ export default function Es6Typescript() {
     let str : string = '';
     str ="10";
     const description = `str의 값은 ${str}입니다`
-    alert(description);
+    // alert(description);
     
     // ? number : 숫자
     // ? 실수와 정수를 모두 포함  
@@ -105,6 +105,108 @@ export default function Es6Typescript() {
         console.log(number);
     }
 
+    // # interface 
+    // ? Ts -> interface를 데이터 타입 형태로 사용 
+     interface IExample{
+        a: string;
+        b:number;
+        c:boolean;
+    }
+
+    
+    const object1:IExample = {a:'a',b:1,c:true};
+    console.log(object1)
+
+    // !  객체형태의 데이터 타입을 지정할 때는 3가지 방법을 쓸  수 있음 
+    // ^1 .interface 를 사용 
+    // ^ class 사용 
+    class Example{
+        a: string;
+        b:number;
+        c:boolean;
+
+        constructor(a:string,b:number,c:boolean){
+            this.a=a;
+            this.b=b;
+            this.c=c;
+
+        }
+    }
+
+    const object2 : Example = new Example('a',1,true);
+    const object3:Example = {a:'a',b:1,c:true};
+    // ^ type 사용 
+
+    type TExample={
+        d:string,
+        e:number,
+        f:boolean
+    }
+
+    const object4 : TExample = {d:'a',e:1,f:true};
+    // const object5: TExample = new Example('a',1,true);
+
+
+
+    // # 8. 삼항 연산자와 Spread 연산자, 비구조화 할당(구조 분해 할당)
+    // ? 삼항 연산자 
+    // ? 조건 ? 참일떄의 결과값 : 거짓일 떄의 결과 값 
+    const result = num > 0 ? '양수' : '양수가 아님';
+    console.log(result); 
+
+
+    // ? spread 연산자 
+    // ? ... 객체로 표현 
+    
+
+
+
+
+
+    //? 비구조화 할당( 구조 분해 할당 )
+    // ? object 타입(객체와 배열)의 요소를 하나씩 직접 꺼내서 사용할 수 있도록 하는 것 
+    // const {a,b,c} =object1;
+    // console.log(a,b,c);
+
+
+     // const [state,set_state_함수] = useState와 형태 동일 
+    // const[a1,b1,c1] = numberArray;
+    // console.log(a1,b1,c1);
+
+    // ? Spread 연산자
+    // ? ...객체 
+    // ? 비구조화 할당에 쓰일 때는 직접 뽑은 요소를 제외한 나머지 요소를 하나의 묶음으로 묶어줌 
+    const {a,...spread1} = object1;
+    console.log(a);
+    console.log(spread1);
+
+    // ? 2.새로운 객체를 생성할 때 가지고 있는 객체를 분해해서 요소로 추가 
+    const example1 = {a1:'a',object1};
+    console.log(example1);
+    // ! ...을 쓰면 객체 본인이 가지고 있는것들을 분해해서 나타낸다 
+    const example2 = {a1:'a',...object1};
+    console.log(example2);
+
+    let state ={email:"e--mail",password:"password",passwordCheck:"passwordChhek"};
+    // ! 원래 존재하던 객체를 바꿔주는 역할도 한다 
+    // ! spread를 가장 앞에 놔두고 나서 모든것을 맞쳐두고 그다음에 바꿀 값을 넣어 놓는다.
+    state = {...state,email:"이메일 "};
+    console.log(state);
+
+
+    // # 9. Enum
+    // ? Enumerated Type : 열거형 타입 
+    // ^ 상수를 객체 스타일로 해 놓은거 
+    enum ENUMERATED{
+        APPLE= 'apple',
+        BANANA=  'banana',
+        CAROT = 'carot'
+    }
+
+    const fruit = ENUMERATED.APPLE;
+   console.log(fruit);
+   let fruit2:ENUMERATED =ENUMERATED.APPLE;
+   console.log(fruit2);
 
 
   return (

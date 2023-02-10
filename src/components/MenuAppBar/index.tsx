@@ -13,12 +13,13 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { PAGES } from 'src/constants';
+import { VIEW } from 'src/enums';
 
 
 // ! typescript에서는 함수를 매개변수로 쓸 수 있다 
 
 interface Props{
-  setView: Dispatch<SetStateAction<string>>;
+  setView: Dispatch<SetStateAction<VIEW>>;
 }
 
 function MenuAppBar({setView}:Props) {
