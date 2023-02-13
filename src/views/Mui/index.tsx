@@ -1,4 +1,4 @@
-import { Box,Button } from '@mui/material'
+import { Box,Button, TextField, ThemeProvider,Grid } from '@mui/material'
 import {IconButtonProps} from '@mui/material/IconButton'
 import {styled} from '@mui/material'
 import React, { useState } from 'react'
@@ -19,7 +19,28 @@ import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsAc
 
 // # Mui styled method
 // ? mui component들의 style을 지정해주는 메서드 
-const CustomIconButton = styled(IconButton)<IconButtonProps>();
+const CustomIconButton = styled(IconButton)<IconButtonProps>(({theme})=>({
+  color: theme.palette.primary.dark
+}));
+// # Mui createTheme method
+// ? 새로운 mui theme를 생성하는 메서드 
+// const theme = createTheme({
+   
+//       palette: {
+//         primary:{
+//            main:'#ffff00'
+//       },
+
+
+//       secondary:{
+//         main: '#00ff00'
+//       }
+//     }
+// });
+
+// const CustomIconButton2 = styled(IconButton)<IconButtonProps>(({})=>({
+//   color: theme.palette.secondary.main
+// }));
 
 
 export default function Mui() {
@@ -120,11 +141,96 @@ export default function Mui() {
             // ^ color customizing
           */}
 
-            <IconButton color='error'>
-                        <NotificationsActiveOutlinedIcon/>
+      {/* <CustomIconButton2 >
+        <NotificationsActiveOutlinedIcon />
 
 
-                      </IconButton>
+      </CustomIconButton2> */}
+
+
+      {/* 
+      // # createTheme 메서드로 생성한 커스텀 테마를 
+      // ? 해당 컴포넌트 자손들에게 모두 적용되도록 하는 컴포넌트 
+      
+      
+      */}
+
+      {/* <ThemeProvider theme={theme}>
+        <IconButton color='primary'>
+          <NotificationsActiveOutlinedIcon />
+
+
+        </IconButton>
+
+
+      </ThemeProvider> */}
+
+      <br/>
+
+      {/* 
+      // # TextField Component 
+      // import {TextField} from '@mul/material'
+      // ? import TextField from '@mui/material/TextField';
+      // ^ Props
+      // ^ 1. variant
+      // ? 값: 'outlined', 'filled','standard'
+      
+      */}
+
+      <TextField variant = 'outlined'/>
+      <TextField variant = 'filled'/>
+      <TextField variant = 'standard'/>
+
+      {/* 
+      // # Box Component
+      // ? HTMl의 div 태그와 일맥상통
+      // ? import { Box } from '@mui/material';
+      // ? import Box from '@mui/material/Box';
+      // ^ Props
+      // ^ 1.  components
+      // ^ 2.  
+      // ?  Box Component의 속성을 변경 - 모든 html태그로 변경 
+      
+      
+      */}
+      <Box component = 'h3'>Hello MUI</Box>
+      <Box component = 'a' href='http://naver.com'>Naver</Box>
+
+
+      {/* 
+      
+      // # Grid Component
+      // ? 공간을 12등분하여 자식 item을 구분 
+      // ? 반응형 웹 구현에 기준 
+      // ? import {Grid} from '@mui/material'
+      // ? import Grid from '@mui/material/Grid'
+      // ^ Props
+      // ^ 1. container 
+      // ? 해당 Component의 공간을 12등분으로 나눠줌
+      // ^ 2. item 
+      // ? 12등분으로 나눠진 공간에 배치될 요소  
+      // ^ spacing
+      // ? item간의 간격 지정 - 
+      // ^ 4. xs,sm,md,lg,xl
+      // ? xs -576px < width 
+      // ? sm - 576px >= width
+      // ? md - 768px <= width
+      // ? lg - 992px <= width
+      // ? xl - 1200px <= width
+      
+      */}
+
+      <Grid container spacing={1} >
+        <Grid item xs={12} md={6} xl={4}>
+            <Box sx={{height:'100px',backgroundColor:'red'}}></Box>
+        </Grid>
+        <Grid item xs={12} md={6} xl={4}>
+            <Box sx={{height:'100px',backgroundColor:'Blue'}}></Box>
+        </Grid>
+        <Grid item xs={12} md={6} xl={4}>
+            <Box sx={{height:'100px',backgroundColor:'Orange'}}></Box>
+        </Grid>
+      </Grid>
     
     
     </>
