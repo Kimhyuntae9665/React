@@ -10,6 +10,7 @@ import Es6Typescript from './views/Es6TypeScript';
 import JsxTsx from './views/JsxTsx';
 import { VIEW } from './enums';
 import Hook from './views/Hook';
+import Mui from './views/Mui';
 
 export default function App() {
   const [view, setView] = useState<VIEW>(VIEW.NAVER);
@@ -35,12 +36,12 @@ export default function App() {
           view ===VIEW.TYPESCRIPT?(<Es6Typescript/>):
           view===VIEW.TSX?(<JsxTsx/>):
           view===VIEW.HOOK?(<Hook/>):
-          view===VIEW.MUI?(<></>):(<></>)
+          view===VIEW.MUI?(<Mui/>):(<></>)
           // ^ <></>: 아무런 의미가 없는 빈 태그 하지만 꼭 채워야 할 때 
           // ^ 첫 화면은 빈 화면이고 클릭하면 네이버나 카카오 화면이 뜬다 
           // 첫 화면은 클릭을 안했기에 view 가 빈칸 이므로 삼항 연산자가 거짓이므로 카카오 화면이 뜬다 
         }
-        
+          
         
       </div>
     </div>

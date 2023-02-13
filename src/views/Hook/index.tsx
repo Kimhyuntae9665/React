@@ -9,7 +9,26 @@ import {useState,useEffect} from 'react'
 // ?    1. 무조건 함수형 컴포넌트 내에서만 호출 가능 (rfc로 생성한 함수형 컴포넌트 란에서만 호출가능 )
 // ?    2. 무조건 함수형 컴포넌트 최상위단에서만 호출할 수 있음 
 // ?    3. 조건부로 호출할 수 없음(조건부 안에서는 사용 불가 ) 
+
+// ?    React Hook "useState" cannot be called at the top level. React Hooks must be called in a React function component or a custom React Hook function  
+// ?    위 에러를 반환 
+// const[extState,setExtState] = useState<boolean>(false);
+
+
+
 export default function Hook() {
+
+    // # 함수형 컴포넌트의 자식 함수에서 사용한 경우 
+    // ?    React Hook "useState" is called in function "fn" that is neither a React function component nor a custom React Hook function.
+    // ?     React component names must start with an uppercase letter. React Hook names must start with the word "
+    
+
+
+
+    // ! 일반 함수안애서는 Hook함수를 사용할 수 없다 
+    // const fn = () =>{
+    //     const[intState,setIntState] = useState<boolean>(false);
+    // }
 
     // # 1.     useState()
     // ?        React 컴포넌트 내에서 state를 추적(state변수가 변하는지 않하는지 계속해서 추적 )
@@ -46,10 +65,45 @@ export default function Hook() {
         // ! 새로운 객체로 만들어서 돌려줘야지 인식이 가능하다 
         // ^새로운 배열 혹은 객체를 생성하여 새로운 주소를 할당한 다음 
         // ^ 새로운 주소를 가지고 있는 참조 변수로 변경해야 리랜더링이 된다 
+
         const tmp = objectState.map((item)=>item);
-        setObjectState(tmp);
+        // !const tmp = objectState   결과 동일 
+// ! 실제 map이 실행되는 과정 
+        // const tmpList = [];
+        // for (const item of objectState) {
+        //     tmpList.push(item * 2);
+        // }
+
+        // console.log('===tmp')
+        // console.log(tmp);
+        // console.log('===objectState')
+        // console.log(objectState);
+         setObjectState(tmp);
         // 원래는 setObjectState(objectState)여서 잘못 된거 
     }
+
+
+    const [num,setNum] = useState<number>(1);
+
+    const onPlusHandler=()=>{
+        // ^ 상태를 set메서드로 변경 시키더라도 
+        // ^ 바로 상태가 변경되는 것이 아니라 
+        // ^ 해당 호출 혹은 함수가 종료 되고 리랜더링 된 후 변경됨 
+        const tmp = num+1
+        // ^ 그렇기 떄문에 아래와 같이 변경 후에 변경한 값으로 작업을 하려고 해도 
+        // ^ 원래 저장되어있는 값으로 작업이 진행됨 
+        // ^ 이런 문제를  해결하는 방법은 
+        // ^ 1.     바로 아래의 useEffect(()=>{},[]) 처럼 사용 
+        // ^2.      변경 작업을 따로 저장한 후 그 저장한 값으로 작업을 진행 하고 
+        // ^ 3.     그 값으로 state를 변경 
+        setNum(tmp);
+        alert(tmp);
+
+    }
+
+    // useEffect(()=>{
+    //    alert(num); 
+    // },[num])
 
     // #2  useEffect
     // ? 특정 상태값이 변경되는지 추적하고 있다가
@@ -73,6 +127,35 @@ export default function Hook() {
     useEffect(()=>{
         console.log('로드 될떄만 실행되는 함수 ')
     },[]) //마지막 대괄호 자리에 아무것도 넣지 않으면 시작할때 딱 한번만 실행된다 
+
+    const[loaded,setLoaded]  = useState<boolean>(false);
+
+    //  loaded = false;
+
+    // useEffect(()=>{
+    //     // ! 첫 로드 시 두번 샐행되는 것을 방지하느 ㄴ방법으로 
+    //     // ^ 특정 변수를 지정하여 그 값이 참일 때만 실행하도록 하고 
+    //     // ^ 실행 후에는 참인 상태를 가짓의 상태로 변경해준다 
+
+    //     if(!loaded){
+    //         console.log('로드 될때만 실행죄는 함수!');
+    //         loaded = true;
+    //     }
+
+    // },[]);
+
+    // ^ useEffect에서 scope할 state를 지정할 때 주의!!
+    const[flag,setFlag] = useState<boolean>(false);
+
+
+
+    // ^ useEffect에 scope한 state를 useEffect 내에서 
+    // ^ 변경하는 작업을 진행하면 무한 실행이 된다 
+    useEffect(()=>{
+        console.log('이거 뭐야 !!!!!');
+        setFlag(!flag); // scopr한 state를 useEffect 내에서 변경하는 작업인 !flag
+    },[flag]);
+
     
 
 
@@ -85,6 +168,8 @@ export default function Hook() {
         ))}
         {/* 버튼 눌릴때 마다 1이 하나씩 늘어나는 배열 push로 인해서  */}
         <button onClick={onClickHandler}>Add number!</button>
+        <div>{num}</div>
+        <button onClick={onPlusHandler}>{'+'}</button>
     </div>
   )
 }
