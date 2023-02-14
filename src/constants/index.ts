@@ -49,6 +49,10 @@ export const PAGES =[
     {
         title:'MUI',
         viewValue:VIEW.MUI
+    },
+    {
+        title:'ROUTER',
+        viewValue:VIEW.ROUTER
     }
 
 ]
